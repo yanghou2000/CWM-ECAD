@@ -14,16 +14,16 @@ module top_tb(
     );
     
 //Todo: Parameters
-CLK_PERIOD = 10;
+parameter CLK_PERIOD = 10;
 //Todo: Regitsers and wires
     reg rst;
     reg change;
     reg on_off;
     reg clk;
     reg err;
-    reg [7:0] counter_out
-    reg [7:0] counter_pre
-    wire [7:0] counter_out;
+    
+    reg [7:0] counter_pre;
+    wire counter_out;
 //Todo: Clock generation
     initial
     begin
@@ -37,36 +37,43 @@ CLK_PERIOD = 10;
     change = 0;
     on_off = 0;
     err = 0;
-    counter_pre = counter_out
+    counter_pre = counter_out;
       forever
-        if((on_off == 1) && (counter_out < counter_prev))  
+      begin
+        if((on_off == 1) && (counter_out < counter_pre))  
 			begin
 				$display("TEST FAILED: not counting up");
 				err = 1;
 			end
-        if((on_off) ==0) && (counter_out > counter_pre)
+        if((on_off == 0) && (counter_out > counter_pre))
                         begin    
                                 $display("TEST FAILED: not counting down");
                                 err = 1;
                         end
-        if((change = =1) && (counter_out != counter_pre))
+        if((change == 1) && (counter_out != counter_pre))
                         begin   
                                 $display("TEST FAILED: not holding constant");  
-                                err = 1
+                                err = 1;
                         end
-        counter_pre = counter_out;
-        change = change + 1;
-        on_off = on_off +1
+        
+        begin
+           counter_pre = counter_out;
+           change = change + 1;
+           on_off = on_off +1;
+        end
       end
       
       forever
+      begin
         if((rst == 1) && (counter_out != 0))
                         begin 
                                 $display("TEST FAILED: not retting to 0");
                                 err = 1;
                         end
-        counter_pre = counter_out;
-        rst = rst - 1;
+        begin
+            counter_pre = counter_out;
+            rst = rst - 1;
+        end
       end
     end
                          
