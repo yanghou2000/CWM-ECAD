@@ -26,7 +26,7 @@ module LED (
     );  
 
     //Todo: add registers and wires, if needed
-    output reg [2:0] color;
+    reg [2:0] color;
 
     //Todo: add user logic
     always @(posedge clk)
