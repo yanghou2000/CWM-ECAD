@@ -28,7 +28,7 @@ module monitor (
     );
                     
     //Todo: add registers and wires, if needed
-    reg [7:0] counter_out
+    reg [7:0] counter_out;
     
     //Todo: add user logic
 always @(posedge clk)
@@ -41,11 +41,12 @@ always @(posedge clk)
 	   begin
              
              if(change)
-		if(on_off)
-		  counter_out<=counter_out+1;
-		else
-		  counter_out<=counter_out-1;
-
+	       begin	
+                 if(on_off)
+		   counter_out<=counter_out+1;
+		 else
+		   counter_out<=counter_out-1;
+               end
 	   end
       end
                 

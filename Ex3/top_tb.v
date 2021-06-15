@@ -39,6 +39,7 @@ parameter CLK_PERIOD = 10;
     err = 0;
     counter_pre = counter_out;
       forever
+      #(CLK_PERIOD)
       begin
         if((on_off == 1) && (counter_out < counter_pre))  
 			begin
@@ -64,6 +65,7 @@ parameter CLK_PERIOD = 10;
       end
       
       forever
+      #(CLK_PERIOD)
       begin
         if((rst == 1) && (counter_out != 0))
                         begin 
