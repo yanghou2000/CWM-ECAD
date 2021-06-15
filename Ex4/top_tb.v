@@ -30,13 +30,6 @@ parameter CLK_PERIOD = 10;
          #(CLK_PERIOD/2) clk=~clk;
      end
 
-//Todo: Botton generation
-    initial
-    begin
-       button = 1'b0;
-       forever
-         #(CLK_PERIOD/2) button=~button;
-    end
 //Todo: User logic
     initial 
     begin
