@@ -36,33 +36,41 @@ parameter CLK_PERIOD = 10;
     rst = 1;
     button = 0;
     err = 0;
+    color_pre = color;
+       
        forever
-       #(CLK_PERIOD)
+         #(CLK_PERIOD)
        begin
-            if ((rst == 1) && (color != 3'b001))
+            button = 1;
+	    
+            if((button == 1) && (color != color_pre) )
+                        begin
+				$display("TEST FAILED not incrementing correctly");
+				err = 1;
+			end
+
+            begin
+              color_pre <= color;
+              color <= color + 1;
+            end
+
+
+       end
+            
+       if ((rst == 1) && (color != 3'b001))
                begin
-                    $display("TEST FAILED");
+                    $display("TEST FAILED not resetting");
                     err = 1;
                end
             
-            rst = 0;	
-            color_pre = color;
+       rst = 0;	
+       color_pre = color;
 
-            if((button == 0) && (color_pre != color))
+       if((button == 0) && (color_pre != color))
 			begin
-			     $display("TEST FAILED");
+			     $display("TEST FAILED not staying constant");
 			     err = 1;
-			end
-
-            button = 1;
-	    color_pre = color;
-
-            if((button == 1) && (color != color_pre +1))
-                        begin
-				$display("TEST FAILED");
-				err = 1;
-			end
-       end
+                        end
     end
 
 //Todo: Finish test, check for success
