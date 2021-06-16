@@ -51,7 +51,7 @@ parameter CLK_PERIOD = 10;
 
             begin
               color_pre <= color;
-              color <= color + 1;
+              //color <= color + 1;
             end
 
 
