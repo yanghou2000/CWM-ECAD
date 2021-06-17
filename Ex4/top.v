@@ -50,6 +50,10 @@ module LED (
                    #1 color <= 3'b110;
                  if (color == 3'b110)
                    #1 color <= 3'b001;
+                 if (color == 3'b000)
+                   #1 color <= 3'b001;
+		 if (color == 3'b111)
+                   #1 color <= 3'b001;
              end
     end  
 endmodule                      
