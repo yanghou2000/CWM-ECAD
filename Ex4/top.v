@@ -32,7 +32,7 @@ module LED (
     always @(posedge clk)
     begin
          if (rst)
-            #1 color <= 3'b001;
+            #1 color <= 3'b000;
          else
              begin
              if (button == 0)
