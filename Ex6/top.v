@@ -27,12 +27,12 @@ module RGB(
 
   
 mytruebram RGB (
-  .clka(clka),    // input wire clka
-  .ena(ena),      // input wire ena
-  .wea(wea),      // input wire [0 : 0] wea
-  .addra(addra),  // input wire [2 : 0] addra
-  .dina(dina),    // input wire [23 : 0] dina
-  .douta(douta)  // output wire [23 : 0] douta
+  .clka(clk),    // input wire clka
+  .ena(enable),      // input wire ena
+  .wea(1'b0),      // input wire [0 : 0] wea
+  .addra(colour),  // input wire [2 : 0] addra
+  .dina(24'h0),    // input wire [23 : 0] dina
+  .douta(rgb)  // output wire [23 : 0] douta
 );
 
 endmodule
